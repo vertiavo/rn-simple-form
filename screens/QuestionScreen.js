@@ -9,6 +9,7 @@ import {
   View
 } from "react-native";
 import RadioGroup from "react-native-radio-buttons-group";
+import { CheckBox } from "react-native-elements";
 
 export default class QuestionScreen extends Component {
   constructor(props) {
@@ -19,6 +20,7 @@ export default class QuestionScreen extends Component {
       sex: "",
       age: 1,
       color: "",
+      gdpr: false,
       genders: [
         {
           label: "Male"
@@ -102,7 +104,6 @@ export default class QuestionScreen extends Component {
           </View>
         </View>
 
-        {/* TODO Use select for color */}
         <View style={styles.propertyRow}>
           <View style={styles.propertyLabel}>
             <Text>Favorite color</Text>
@@ -113,12 +114,19 @@ export default class QuestionScreen extends Component {
               style={styles.slider}
               onValueChange={(itemValue, itemIndex) =>
                 this.setState({ color: itemValue })
-              }>
+              }
+            >
               <Picker.Item label="Red" value="Red" />
               <Picker.Item label="Green" value="Green" />
               <Picker.Item label="Blue" value="Blue" />
             </Picker>
           </View>
+        </View>
+
+        <View style={styles.propertyRow}>
+          <CheckBox center title="GDPR (RODO)" checked={(this.state.gdpr)}
+            onPress={() => this.setState({ gdpr: !this.state.gdpr })}
+          />
         </View>
 
         <Button

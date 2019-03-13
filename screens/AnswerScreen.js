@@ -1,37 +1,42 @@
 import React, { Component } from "react";
-import { Button, Text, View } from "react-native";
+import { Button, StyleSheet, Text, View } from "react-native";
 
 export default class AnswerScreen extends Component {
   render() {
     const { navigation } = this.props;
-    const name = navigation.getParam("name", "No name provided");
-    const surname = navigation.getParam("surname", "No surname provided");
-    const sex = navigation.getParam("sex", "No gender provided");
-    const age = navigation.getParam("age", "No age provided");
-    const color = navigation.getParam("color", "No color provided");
+    const name = navigation.getParam("name", "");
+    const surname = navigation.getParam("surname", "");
+    const sex = navigation.getParam("sex", "");
+    const age = navigation.getParam("age", "");
+    const color = navigation.getParam("color", "");
+    const gdpr = navigation.getParam("gdpr", false);
 
     return (
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <View style={styles.container}>
         <Text>Answer Screen</Text>
 
-        <View style={{ flex: 1 }}>
+        <View style={styles.propertyRow}>
           <Text>Name: {name}</Text>
         </View>
 
-        <View style={{ flex: 1 }}>
+        <View style={styles.propertyRow}>
           <Text>Surname: {surname}</Text>
         </View>
 
-        <View style={{ flex: 1 }}>
+        <View style={styles.propertyRow}>
           <Text>Sex: {sex}</Text>
         </View>
 
-        <View style={{ flex: 1 }}>
+        <View style={styles.propertyRow}>
           <Text>Age: {age}</Text>
         </View>
 
-        <View style={{ flex: 1 }}>
+        <View style={styles.propertyRow}>
           <Text>Favorite color: {color}</Text>
+        </View>
+
+        <View style={styles.propertyRow}>
+          <Text>GDPR: {JSON.stringify(gdpr)}</Text>
         </View>
 
         <Button
@@ -42,3 +47,14 @@ export default class AnswerScreen extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  propertyRow: {
+    flex: 1
+  }
+});
